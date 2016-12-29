@@ -56,9 +56,14 @@ services:
 
 * **nome-do-serviço**: Nome para identificar o serviço no docker-compose.
   * **image:** Imagem docker que séra utilizada para o serviço.
-  * **container_name:** Atribui um nome ao container, tornando mais fácil a administração dos containers.
+  * **container_name:** Atribui um nome ao container, tornando mais fácil a administração.
   * **hostname:** Adiciona um nome ao host. Utilizaremos os hostnames nas próximas etapas.
   * **network_mode:** Configurações de rede para o container. O modo bridge sobe todos os containers na mesma rede.
   * **links:** Faz o link entre os containers, para que a comunicação por nome seja possível. (Falei que o hostname seria importante :relieved:)
-  * **ports:** Portas que serão abertas interna e externamente no container. *Todos os padrões para definição de portas podem ser encontrados [aqui](https://docs.docker.com/compose/compose-file/#/ports)*.
+  * **ports:** Você pode definir quais portas serão abertas interna e externamente no container. *Todos os padrões para definição de portas podem ser encontrados [aqui](https://docs.docker.com/compose/compose-file/#/ports)*.
   * **volumes:** Monta *paths* ou volumes nomeados, opcionalmente especificando um caminho no host. *Todos os tipos de montagem de volume [aqui](https://docs.docker.com/compose/compose-file/#volumes-volumedriver)*.
+
+
+Essa é só uma explicação básica da estrutura do YAML para o docker-compose que iremos utilizar. Caso você queira se aprofundar ainda mais no assunto, a documentação oficial pode ajudar nisso :simple_smile:. Voce pode acessá-la  *[aqui](https://docs.docker.com/compose/compose-file/).*
+
+Agora que o *docker-compose.yml* foi configurado e entendido, vamos começar com oque realmente interessa. *Let's go! :goberserk:*
