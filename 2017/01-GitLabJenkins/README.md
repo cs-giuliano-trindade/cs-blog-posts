@@ -60,8 +60,5 @@ services:
   * **hostname:** Adiciona um nome ao host. Utilizaremos os hostnames nas próximas etapas.
   * **network_mode:** Configurações de rede para o container. O modo bridge sobe todos os containers na mesma rede.
   * **links:** Faz o link entre os containers, para que a comunicação por nome seja possível. (Falei que o hostname seria importante :relieved:)
-  ports:
-    - "8080:8080"
-    - "50000:50000"
-  volumes:
-    - ~/Projects/jenkins_home:/var/jenkins_home
+  * **ports:** Portas que serão abertas interna e externamente no container. *Todos os padrões para definição de portas podem ser encontrados [aqui](https://docs.docker.com/compose/compose-file/#/ports)*.
+  * **volumes:** Monta *paths* ou volumes nomeados, opcionalmente especificando um caminho no host. *Todos os tipos de montagem de volume [aqui](https://docs.docker.com/compose/compose-file/#volumes-volumedriver)*.
