@@ -1,2 +1,67 @@
 GitLab + Jenkins: Uma integração poderosa
 =========================================
+
+
+```yml
+
+version: '2'
+
+services:
+    ambassador:
+      image: cpuguy83/docker-grand-ambassador
+      container_name: ambassador
+      hostname: ambassador01
+      network_mode: "bridge"
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock"
+      command: "-name jenkins -name gitlab "
+
+    jenkins:
+      image: jenkins:latest
+      container_name: jenkins
+      hostname: jenkins01
+      network_mode: "bridge"
+      links:
+        - "ambassador:gitlab"
+      ports:
+        - "8080:8080"
+        - "50000:50000"
+      volumes:
+        - ~/Projects/jenkins_home:/var/jenkins_home
+
+    gitlab:
+        image: gitlab/gitlab-ce
+        container_name: gitlab
+        hostname: gitlab.teste.com
+        restart: always
+        network_mode: bridge
+        links:
+          - "ambassador:jenkins"
+        ports:
+           - "443:443"
+           - "8050:80"
+           - "22:22"
+        volumes:
+          - ~/Projects/gitlab/config:/etc/gitlab
+          - ~/Projects/gitlab/logs:/var/log/gitlab
+          - ~/Projects/gitlab/data:/var/opt/gitlab
+
+
+```
+
+
+* **version: '2'**: Utilizando a versão 2 da sintaxe do docker-compose, conseguiremos utilizar todas as novas funcionalidades disponíveis do Compose e do Docker Engine.
+
+* **services**: Todos os serviços que serão utilizados em nosso projeto devem estar listados abaixo dele. *(A estrutura de services só funciona com a versão 2 da sintaxe).*
+
+* **nome-do-serviço**: Nome para identificar o serviço no docker-compose.
+  * **image:** Imagem docker que séra utilizada para o serviço.
+  * **container_name:** Atribui um nome ao container, tornando mais fácil a administração dos containers.
+  * **hostname:** Adiciona um nome ao host. Utilizaremos os hostnames nas próximas etapas.
+  * **network_mode:** Configurações de rede para o container. O modo bridge sobe todos os containers na mesma rede.
+  * **links:** Faz o link entre os containers, para que a comunicação por nome seja possível. (Falei que o hostname seria importante :relieved:)
+  ports:
+    - "8080:8080"
+    - "50000:50000"
+  volumes:
+    - ~/Projects/jenkins_home:/var/jenkins_home
