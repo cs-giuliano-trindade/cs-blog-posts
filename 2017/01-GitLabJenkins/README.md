@@ -4,6 +4,16 @@ GitLab + Jenkins: Uma integração poderosa
 
 ![Integracao_Docker](imagens/integ.png)
 
+
+Docker
+-------------
+Para iniciarmos nosso projeto, precisamos ter o [Docker](https://www.docker.com/) instalado, pois, como ele, subiremos os serviços do GitLab e do Jenkins através do [docker-compose](https://docs.docker.com/compose/) *(que falaremos mais abaixo :sweat_smile:)*.
+Para efetuar a instalação, verifique qual SO você está utilizando e *Go!Go!Go!* :feelsgood:. É só seguir esse [tutorial](https://docs.docker.com/engine/installation/).
+
+A instalação do docker-compose é um pouco mais complicada de se fazer, mas é só seguir a [documentação oficial](https://docs.docker.com/compose/install/) que vai dar certo. :metal:
+
+
+
 ```yml
 
 version: '2'
