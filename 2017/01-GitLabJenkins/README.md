@@ -2,6 +2,12 @@ GitLab + Jenkins: Uma integração poderosa
 =========================================
 
 
+<img src="imagens/docker.png" width="145"/> <img src="imagens/jenkins.png" width="125"/><img src="imagens/gitlab.png" width="125"/> 
+
+
+
+
+
 ```yml
 
 version: '2'
@@ -65,5 +71,7 @@ services:
 
 
 Essa é só uma explicação básica da estrutura do YAML para o docker-compose que iremos utilizar. Caso você queira se aprofundar ainda mais no assunto, a documentação oficial pode ajudar nisso :smiley:. Voce pode acessá-la  *[aqui](https://docs.docker.com/compose/compose-file/).*
+
+:warning: A identação é essencial para o funcionamento do docker-compose.
 
 Agora que o *docker-compose.yml* foi configurado e entendido, vamos começar com oque realmente interessa. *Let's go! :goberserk:*
