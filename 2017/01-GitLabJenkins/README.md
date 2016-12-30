@@ -2,11 +2,7 @@ GitLab + Jenkins: Uma integração poderosa
 =========================================
 
 
-<center><img src="imagens/docker.png" width="245"/>&nbsp;&nbsp; <img src="imagens/jenkins.png" width="225"/>&nbsp;&nbsp;<img src="imagens/gitlab.png" width="225"/></center> 
-
-
-
-
+![Integracao_Docker](imagens/integ.png)
 
 ```yml
 
