@@ -18,7 +18,10 @@ Para a instalação do docker-compose é só seguir a [documentação oficial](h
 
 Docker Compose
 --------------
-Vamos utilizar o docker-compose para subir nossas aplicações, para isso, vamos criar um arquivo ``` docker-compose.yml ``` e copiar todo o conteúdo abaixo para dentro dele. Não se preocupe, vou explicar cada item logo abaixo. :relieved:
+Com o docker-compose, podemos criar e configurar e subir todos os serviços que vamos necessitar de uma só vez, com um único comando,  e para isso, vamos criar um arquivo ``` docker-compose.yml ``` em uma pasta de sua preferencia, e copiar todo o conteúdo abaixo para dentro dele. Não se preocupe, vou explicar cada item. :relieved:
+Para mais informações, é só acessar [aqui](https://docs.docker.com/compose/overview/).
+
+
 
 
 ```yml
@@ -83,8 +86,16 @@ services:
   * **volumes:** Monta *paths* ou volumes nomeados, opcionalmente especificando um caminho no host. *Todos os tipos de montagem de volume [aqui](https://docs.docker.com/compose/compose-file/#volumes-volumedriver)*.
 
 
-Essa é só uma explicação básica da estrutura do YAML para o docker-compose que iremos utilizar. Caso você queira se aprofundar ainda mais no assunto, a documentação oficial pode ajudar nisso :smiley:. Voce pode acessá-la  *[aqui](https://docs.docker.com/compose/compose-file/).*
+Essa é só uma explicação básica da estrutura do YAML para o *docker-compose file* que iremos utilizar. Caso você queira se aprofundar ainda mais no assunto, a documentação oficial pode ajudar nisso :smiley:. Voce pode acessá-la  *[aqui](https://docs.docker.com/compose/compose-file/).*
 
 :warning: A identação é essencial para o funcionamento do docker-compose.
 
 Agora que o *docker-compose.yml* foi configurado e entendido, vamos começar com oque realmente interessa. *Let's go! :goberserk:*
+
+
+Serviços
+--------
+
+
+
+### Docker Grand Ambassador
