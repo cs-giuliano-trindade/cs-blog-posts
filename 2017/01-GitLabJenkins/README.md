@@ -11,7 +11,7 @@ Fala pessoal!
 
 O início
 -------------
-Para iniciarmos nosso projeto, precisamos ter o [Docker](https://www.docker.com/) instalado, pois, com ele, subiremos os serviços do GitLab e do Jenkins através do [docker-compose](https://docs.docker.com/compose/) *(que falaremos mais abaixo :sweat_smile:)*.
+Para iniciarmos nosso projeto, precisamos ter o [Docker](https://www.docker.com/) instalado, pois, com ele, subiremos os serviços do GitLab e do Jenkins através do [docker-compose](https://docs.docker.com/compose/) *(que falaremos mais abaixo* :sweat_smile:*).*
 Para efetuar a instalação, verifique qual SO você está utilizando e *Go!Go!Go!* :feelsgood:. É só seguir esse [tutorial](https://docs.docker.com/engine/installation/).
 
 Para a instalação do docker-compose é só seguir a [documentação oficial](https://docs.docker.com/compose/install/) que vai dar certo, pode confiar. :metal:
@@ -96,6 +96,12 @@ Agora que o *docker-compose.yml* foi configurado e entendido, vamos começar com
 Serviços
 --------
 
+Antes de prosseguirmos com o projeto, uma breve explicação sobre cada serviço que estamos subindo.
+Voltaremos com a programação normal em seguida, nesse mesmo canal, e nesse mesmo horário.
 
 
-### Docker Grand Ambassador
+#### Docker Grand Ambassador
+
+Esse serviço permite a comunicação bi-direcional entre containers. Isso significa que ele criará automaticamente um proxy em todas as portas expostas, e também detectará automaticamente as alterações feitas em um container e ajustará o servidor proxy de acordo com a necessidade.(Como por exemplo, um container é reiniciado e seu IP muda). Ou seja, ele vai nos poupar o trabalho de fazer um servidor DNS. :trollface:
+
+### Jenkins
