@@ -115,4 +115,8 @@ Veremos mais sobre essa integração mais abaixo.
 
 ### GitLab
 
-O Gitlab vai ser o nosso gerenciador de repositório nesse projeto, ele é muito parecido com o [GitHub](https://github.com/), mas com a vantagem de que podemos subir o serviço localmente, e a integração dele com o Jenkins é muito grande (Que por coincidência, é o propósito desse post :suspect:). Através de um WebHook vamos conseguir a comunicação direta com o Jenkins, eliminando a necessidade do Jenkins ficar checando o reposítório constantemente. O GitLab vai informar o Jenkins quando um evento ocorre(um *Merge Request* de uma *feature branch* na *branch Develop* por exemplo).
+O Gitlab vai ser o nosso gerenciador de repositório nesse projeto, ele é muito parecido com o [GitHub](https://github.com/), mas com a vantagem de que podemos subir o serviço localmente, e a integração dele com o Jenkins é muito grande (Que por coincidência, é o propósito desse post :suspect:). Através de um WebHook vamos conseguir a comunicação direta com o Jenkins, eliminando a necessidade do Jenkins ficar checando o reposítório constantemente. O GitLab vai informar o Jenkins quando um evento ocorre(um *Merge Request* de uma *feature branch* na *branch Develop* por exemplo) e com isso um Job ligado ao Jenkins pelo WebHook é iniciado.
+
+Agora depois de tanta <s>enrolação</s> explicação, é hora da mágica acontecer.
+
+![Magic](imagens/magic.gif)
