@@ -18,7 +18,7 @@ Para a instalação do docker-compose é só seguir a [documentação oficial](h
 
 Docker Compose
 --------------
-Com o docker-compose, podemos criar e configurar e subir todos os serviços que vamos necessitar de uma só vez, com um único comando,  e para isso, vamos criar um arquivo ``` docker-compose.yml ``` em uma pasta de sua preferencia, e copiar todo o conteúdo abaixo para dentro dele. Não se preocupe, vou explicar cada item. :relieved:
+Com o docker-compose, podemos criar, configurar e subir todos os serviços que vamos necessitar de uma só vez, com um único comando,  e para isso, vamos criar um arquivo ``` docker-compose.yml ``` em uma pasta de sua preferencia, e copiar todo o conteúdo abaixo para dentro dele. Não se preocupe, vou explicar cada item. :relieved:
 Para mais informações, é só acessar [aqui](https://docs.docker.com/compose/overview/).
 
 
@@ -119,4 +119,40 @@ O Gitlab vai ser o nosso gerenciador de repositório nesse projeto, ele é muito
 
 Agora depois de tanta <s>enrolação</s> explicação, é hora da mágica acontecer.
 
-![Magic](imagens/magic.gif)
+![Magic](imagens/magic.gif )
+
+Subindo o ambiente
+==================
+
+### Inicializando os serviços
+
+No diretório em que voce criou o arquivo ```docker-compose.yml``` execute o comando:
+
+```bash
+  docker-compose up
+```
+A saída deverá ser parecida com essa. (Pelo menos eu espero :no_mouth:):
+
+![ComposeUp](imagens/composeup.png)
+
+Caso você não tenha as imagens docker dos serviços que estamos subindo, o docker-compose vai fazer o download automaticamente.
+
+### Jenkins
+
+Após a inicialização dos serviços com o docker-compose, vamos fazer a configuração inicial do Jenkins. Acesse a url [http://localhost:8080/](http://localhost:8080/), você será direicionado para a página inicial do Jenkins.
+
+![JenkinsIni](imagens/jenkins.png)
+
+Para configura-lo, vamos inserir a chave que ele gerou no momento da instalação. Existem duas maneiras de encontrar a chave, a mais simples é digitar no terminal ```docker logs -f jenkins```, e ele exibirá dessa forma:
+
+![JenkinsPass](imagens/jenkinspass.png)  
+
+Há o outro modo que é acessando a pasta ```/var/jenkins_home/secrets/initialAdminPassword```, mas dá muito trabalho, melhor ficarmos com o primeiro modo. :sleeping:
+
+Após colocar a senha inicial, o Jenkins irá exibir  a página de customização dos plugins iniciais, selecione **Install sugested plugins** e aguarde o donwload e instalação.
+
+![CustomizeJenkins](imagens/customizejenkins.png)
+
+E pronto, o Jenkins já está pronto para ser utilizado!
+
+<iframe src="//giphy.com/embed/ToMjGpuMVg9tPNMgZig" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/baby-bird-ToMjGpuMVg9tPNMgZig"></a></p>
