@@ -149,10 +149,19 @@ Para configura-lo, vamos inserir a chave que ele gerou no momento da instalaçã
 
 Há o outro modo que é acessando a pasta ```/var/jenkins_home/secrets/initialAdminPassword```, mas dá muito trabalho, melhor ficarmos com o primeiro modo. :sleeping:
 
-Após colocar a senha inicial, o Jenkins irá exibir  a página de customização dos plugins iniciais, selecione **Install sugested plugins** e aguarde o donwload e instalação.
+Após colocar a senha inicial, o Jenkins irá exibir  a página de customização dos plugins iniciais, selecione **Install sugested plugins** e aguarde o donwload e instalação.bundle exec pod install
 
 ![CustomizeJenkins](imagens/customizejenkins.png)
 
 E pronto, o Jenkins já está pronto para ser utilizado!
 
-<iframe src="//giphy.com/embed/ToMjGpuMVg9tPNMgZig" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/baby-bird-ToMjGpuMVg9tPNMgZig"></a></p>
+
+### GitLab
+
+Com o GitLab o processo é bem mais simples, é só acessar a página inicial dele [http://localhost:8050/](http://localhost:8050/), e colocar uma senha com no mínimo 8 caracteres.
+
+![GitlabSenha](imagens/gitlab_senha.png)
+
+Agora com o ambiente pronto, vamos começar a configuração da integração. Segura que o filho é seu!
+
+![](imagens/son.gif)
