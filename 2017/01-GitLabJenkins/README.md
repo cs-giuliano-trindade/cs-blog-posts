@@ -164,4 +164,4 @@ Com o GitLab o processo é bem mais simples, é só acessar a página inicial de
 
 Agora com o ambiente pronto, vamos começar a configuração da integração. Segura que o filho é seu!
 
-![](imagens/son.gif)
+<img src="imagens/son.gif" height="270" width="480">
