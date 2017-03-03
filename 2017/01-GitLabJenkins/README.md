@@ -4,22 +4,19 @@ GitLab + Jenkins: Uma integração poderosa
 
 ![Integracao_Docker](imagens/integ.png)
 
-Fala pessoal!
-
-
-
+Fala pessoal! Hoje vamos falar um pouco aqui no Blog sobre a integração entre o GitLab e o Jenkins, que pode adiantar muito a sua vida. Vamos lá?
 
 O início
 -------------
-Para iniciarmos nosso projeto, precisamos ter o [Docker](https://www.docker.com/) instalado, pois, com ele, subiremos os serviços do GitLab e do Jenkins através do [docker-compose](https://docs.docker.com/compose/) *(que falaremos mais abaixo* :sweat_smile:*).*
-Para efetuar a instalação, verifique qual SO você está utilizando e *Go!Go!Go!* :feelsgood:. É só seguir esse [tutorial](https://docs.docker.com/engine/installation/).
+Para começar nosso projeto, a primeira coisa que precisamos é ter o [Docker](https://www.docker.com/) instalado, pois é com ele que vamos subir os serviços do GitLab e do Jenkins por meio do [docker-compose](https://docs.docker.com/compose/) *(vamos falar mais pra frente* :sweat_smile:*).*
+Para instalar, verifique qual SO você está usando e *Go!Go!Go!* :feelsgood:. É só seguir esse [tutorial](https://docs.docker.com/engine/installation/).
 
 Para a instalação do docker-compose é só seguir a [documentação oficial](https://docs.docker.com/compose/install/) que vai dar certo, pode confiar. :metal:
 
 Docker Compose
 --------------
-Com o docker-compose, podemos criar, configurar e subir todos os serviços que vamos necessitar de uma só vez, com um único comando,  e para isso, vamos criar um arquivo ``` docker-compose.yml ``` em uma pasta de sua preferencia, e copiar todo o conteúdo abaixo para dentro dele. Não se preocupe, vou explicar cada item. :relieved:
-Para mais informações, é só acessar [aqui](https://docs.docker.com/compose/overview/).
+Com o docker-compose podemos criar, configurar e subir todos os serviços que vamos precisar de uma só vez, com um único comando. Para isso, vamos criar um arquivo ``` docker-compose.yml ``` na pasta de sua preferência e copiar todo o conteúdo abaixo para dentro dele. Não se preocupe, vou explicar cada item. :relieved:
+Se você quiser saber mais, é só acessar [aqui](https://docs.docker.com/compose/overview/).
 
 
 
@@ -72,21 +69,21 @@ services:
 ```
 
 
-* **version: '2'**: Utilizando a versão 2 da sintaxe do docker-compose, conseguiremos utilizar todas as novas funcionalidades disponíveis do Compose e do Docker Engine.
+* **version: '2'**: Com a versão 2 da sintaxe do docker-compose conseguimos usar todas as novas funcionalidades disponíveis do Compose e do Docker Engine.
 
-* **services**: Todos os serviços que serão utilizados em nosso projeto devem estar listados abaixo dele. *(A estrutura de services só funciona com a versão 2 da sintaxe).*
+* **services**: Todos os serviços que serão utilizados no nosso projeto devem estar listados abaixo dele. *(A estrutura de services só funciona com a versão 2 da sintaxe).*
 
 * **nome-do-serviço**: Nome para identificar o serviço no docker-compose.
   * **image:** Imagem docker que será utilizada para o serviço.
   * **container_name:** Atribui um nome ao container, tornando mais fácil a administração.
-  * **hostname:** Adiciona um nome ao host. Utilizaremos os hostnames nas próximas etapas.
+  * **hostname:** Adiciona um nome ao host. Vamos usar os hostnames nas próximas etapas.
   * **network_mode:** Configurações de rede para o container. O modo bridge sobe todos os containers na mesma rede.
-  * **links:** Faz o link entre os containers, para que a comunicação por nome seja possível. (Falei que o hostname seria importante :relieved:)
+  * **links:** Faz o link entre os containers, para que a comunicação por nome seja possível. (Falei que o hostname era importante :relieved:)
   * **ports:** Você pode definir quais portas serão abertas interna e externamente no container. Todos os padrões para definição de portas podem ser encontrados [aqui](https://docs.docker.com/compose/compose-file/#/ports).
-  * **volumes:** Monta *paths* ou volumes nomeados, opcionalmente especificando um caminho no host. Todos os tipos de montagem de volume [aqui](https://docs.docker.com/compose/compose-file/#volumes-volumedriver).
+  * **volumes:** Monta *paths* ou volumes nomeados, especificando um caminho no host ou não. Todos os tipos de montagem de volume [aqui](https://docs.docker.com/compose/compose-file/#volumes-volumedriver).
 
 
-Essa é só uma explicação básica da estrutura do YAML para o *docker-compose file* que iremos utilizar. Caso você queira se aprofundar ainda mais no assunto, a documentação oficial pode ajudar nisso :smiley:. Voce pode acessá-la  *[aqui](https://docs.docker.com/compose/compose-file/).*
+Essa é só uma explicação básica da estrutura do YAML para o *docker-compose file* que vamos utilizar. Caso você queira se aprofundar ainda mais no assunto, a documentação oficial pode ajudar nisso :smiley:. Você pode acessá-la  *[aqui](https://docs.docker.com/compose/compose-file/).*
 
 :warning: A identação é essencial para o funcionamento do docker-compose.
 
@@ -96,37 +93,36 @@ Agora que o *docker-compose.yml* foi configurado e entendido, vamos começar com
 Serviços
 --------
 
-Antes de prosseguirmos com o projeto, uma breve explicação sobre cada serviço que estamos subindo.
-Voltaremos com a programação normal em seguida, nesse mesmo canal, e nesse mesmo horário.
-
+Antes de prosseguir com o projeto, uma breve explicação sobre cada serviço que estamos subindo.
+Voltaremos com a programação normal em seguida, nesse mesmo canal e nesse mesmo horário.
 
 #### Docker Grand Ambassador
 
-Esse serviço permite a comunicação bi-direcional entre containers. Isso significa que ele criará automaticamente um proxy em todas as portas expostas, e também detectará automaticamente as alterações feitas em um container e ajustará o servidor proxy de acordo com a necessidade.(Como por exemplo, um container é reiniciado e seu IP muda). Ou seja, ele vai nos poupar o trabalho de fazer um servidor DNS. :trollface:
+Esse serviço permite a comunicação bidirecional entre containers. Isso significa que ele criará automaticamente um proxy em todas as portas expostas, e também detectará automaticamente as alterações feitas em um container ajustando o servidor proxy de acordo com a necessidade.(Por exemplo, um container é reiniciado e seu IP muda). Ou seja, ele vai nos poupar o trabalho de fazer um servidor DNS. :trollface:
 
-Voce pode ler mais sobre o Docker Grand Ambassador [aqui](https://github.com/cpuguy83/docker-grand-ambassador).
+Você pode ler mais sobre o Docker Grand Ambassador [aqui](https://github.com/cpuguy83/docker-grand-ambassador).
 
 ### Jenkins
 
-O [Jenkins](https://jenkins.io/) vai permitir a automatização dos processos no nosso projeto. Podemos automatizar testes, builds e etc., escolhendo quais serão as ações que vão acionar nosso *Job*.
+O [Jenkins](https://jenkins.io/) permite a automatização dos processos no nosso projeto. Podemos automatizar testes, builds e etc., escolhendo quais serão as ações que vão acionar nosso *Job*.
 
-Veremos mais sobre essa integração mais abaixo.
+Vamos ver mais sobre essa integração ainda neste post.
 
 
 ### GitLab
 
-O Gitlab vai ser o nosso gerenciador de repositório nesse projeto, ele é muito parecido com o [GitHub](https://github.com/), mas com a vantagem de que podemos subir o serviço localmente, e a integração dele com o Jenkins é muito grande (Que por coincidência, é o propósito desse post :suspect:). Através de um WebHook vamos conseguir a comunicação direta com o Jenkins, eliminando a necessidade do Jenkins ficar checando o reposítório constantemente. O GitLab vai informar o Jenkins quando um evento ocorre(um *Merge Request* de uma *feature branch* na *branch Develop* por exemplo) e com isso um Job ligado ao Jenkins pelo WebHook é iniciado.
+O Gitlab vai ser o nosso gerenciador de repositório. Ele é muito parecido com o [GitHub](https://github.com/), mas com a vantagem de podermos subir o serviço localmente. Além disso, a integração dele com o Jenkins é muito grande (aliás esse é o propósito deste post :suspect:). Por meio de um WebHook vamos conseguir a comunicação direta com o Jenkins, eliminando a necessidade de ele ficar checando o repositório constantemente. O GitLab vai informar o Jenkins quando um evento ocorre (um *Merge Request* de uma *feature branch* na *branch Develop*, por exemplo) e com isso um Job ligado ao Jenkins pelo WebHook é iniciado.
 
-Agora depois de tanta <s>enrolação</s> explicação, é hora da mágica acontecer.
+Agora, depois de tanta <s>enrolação</s> explicação, é hora de a mágica acontecer.
 
 ![Magic](imagens/magic.gif )
 
 Subindo o ambiente
 ==================
 
-### Inicializando os serviços
+### Iniciando os serviços
 
-No diretório em que voce criou o arquivo ```docker-compose.yml``` execute o comando:
+No diretório em que você criou o arquivo ```docker-compose.yml``` execute o comando:
 
 ```bash
   docker-compose up
@@ -139,29 +135,29 @@ Caso você não tenha as imagens docker dos serviços que estamos subindo, o doc
 
 ### Jenkins
 
-Após a inicialização dos serviços com o docker-compose, vamos fazer a configuração inicial do Jenkins. Acesse a url [http://localhost:8080/](http://localhost:8080/), você será direicionado para a página inicial do Jenkins.
+Após a inicialização dos serviços com o docker-compose, vamos fazer a configuração inicial do Jenkins. Acesse a url [http://localhost:8080/](http://localhost:8080/) e você será direcionado para a página inicial do Jenkins.
 
 ![JenkinsIni](imagens/jenkins.png)
 
-Para configura-lo, vamos inserir a chave que ele gerou no momento da instalação. Existem duas maneiras de encontrar a chave, a mais simples é digitar no terminal ```docker logs -f jenkins```, e ele exibirá dessa forma:
+Para configurá-lo, vamos inserir a chave que ele gerou no momento da instalação. Existem duas maneiras de encontrar a chave, a mais simples é digitar no terminal ```docker logs -f jenkins```. Ele vai exibir assim:
 
 ![JenkinsPass](imagens/jenkinspass.png)  
 
-Há o outro modo que é acessando a pasta ```/var/jenkins_home/secrets/initialAdminPassword```, mas dá muito trabalho, melhor ficarmos com o primeiro modo. :sleeping:
+Há outro modo que é acessando a pasta ```/var/jenkins_home/secrets/initialAdminPassword```, mas dá muito trabalho, melhor ficarmos com o primeiro mesmo. :sleeping:
 
-Após colocar a senha inicial, o Jenkins irá exibir  a página de customização dos plugins iniciais, selecione **Install sugested plugins** e aguarde o donwload e instalação.bundle exec pod install
+Após colocar a senha inicial, o Jenkins vai exibir a página de customização dos plugins iniciais. Selecione **Install sugested plugins** e aguarde o donwload e instalação.bundle exec pod install
 
 ![CustomizeJenkins](imagens/customizejenkins.png)
 
-E pronto, o Jenkins já está pronto para ser utilizado!
+Pronto, o Jenkins já está pronto para ser utilizado!
 
 
 ### GitLab
 
-Com o GitLab o processo é bem mais simples, é só acessar a página inicial dele [http://localhost:8050/](http://localhost:8050/), e colocar uma senha com no mínimo 8 caracteres.
+Com o GitLab o processo é bem mais simples. Só acessar a página inicial dele [http://localhost:8050/](http://localhost:8050/), e colocar uma senha com no mínimo 8 caracteres.
 
 ![GitlabSenha](imagens/gitlab_senha.png)
 
-Agora com o ambiente pronto, vamos começar a configuração da integração. Segura que o filho é seu!
+Agora estamos com o ambiente pronto e podemos começar a configuração da integração. Segura que o filho é seu!
 
 <img src="imagens/son.gif" height="270" width="480">
