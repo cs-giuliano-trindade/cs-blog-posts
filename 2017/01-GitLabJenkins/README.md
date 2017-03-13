@@ -145,7 +145,7 @@ Para configurá-lo, vamos inserir a chave que ele gerou no momento da instalaç�
 
 Há outro modo que é acessando a pasta ```/var/jenkins_home/secrets/initialAdminPassword```, mas dá muito trabalho, melhor ficarmos com o primeiro mesmo. :sleeping:
 
-Após colocar a senha inicial, o Jenkins vai exibir a página de customização dos plugins iniciais. Selecione **Install sugested plugins** e aguarde o donwload e instalação.bundle exec pod install
+Após colocar a senha inicial, o Jenkins vai exibir a página de customização dos plugins iniciais. Selecione **Install sugested plugins** e aguarde o donwload e instalação.
 
 ![CustomizeJenkins](imagens/customizejenkins.png)
 
@@ -160,4 +160,19 @@ Com o GitLab o processo é bem mais simples. Só acessar a página inicial dele 
 
 Agora estamos com o ambiente pronto e podemos começar a configuração da integração. Segura que o filho é seu!
 
-<img src="imagens/son.gif" height="270" width="480">
+<img src="imagens/son.gif" height="470" width="680">
+
+
+
+### Criação do repositório e do job
+
+Vamos criar um repositório no Gitlab para armazenar o nosso projeto.(São só dois arquivos, mas faz de conta que é um projeto :trollface:)
+
+Na tela inicial, clique em _New Project_, preencha o nome para seu projeto e clique em _Create Project_.
+
+![GitlabCriar](imagens/gitlab_criar.png)
+
+
+Após o login, clique em _Novo Job_, escolha _Projeto Freestyle_, digite um nome para o job e clique em _OK_.
+
+![GitlabCriar](imagens/jenkins_criar.png)
