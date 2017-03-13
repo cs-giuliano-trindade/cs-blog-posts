@@ -202,13 +202,6 @@ if __name__ == '__main__':
 ```
 [Fonte dos códigos em Python](http://www.concretesolutions.com.br/2016/11/23/devops-ferramentas-pos/)
 
-### Criação do Job
-Após o login no Jenkins, clique em _Novo Job_, escolha _Projeto Freestyle_, digite um nome para o job e clique em _OK_.
-
-![GitlabCriar](imagens/jenkins_criar.png)
-
-Tudo bem simples, certo? Fica tranquilo que vamos continuar assim! <s>mentira :tired_face:</s>
-
 ### Configurando o Jenkins
 
 Vamos precisar do [GitLab Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitLab+Plugin) para conectarmos no repositório do nosso projeto.(Lembre-se, são só dois arquivos, mas vamos manter a positividade).
@@ -252,3 +245,79 @@ Vamos ao próximo passo!
 Com a nossa credencial criada vamos em [Gerenciar Jenkins]->[Configurar o sistema]. Desça até a Gitlab e preencha as informações conforme a imagem abaixo, ao terminar, clique em *Test Connection*. Se tudo estiver certo clique em *Salvar*.
 
 ![GitLabConnection](imagens/gitlab_conn.png)
+
+Depois de tantas configurações, vamos em frente.:goberserk:
+
+
+#### Criação do Job
+
+No canto esquerdo, clique em _Novo Job_, escolha _Projeto Freestyle_, digite um nome para o job e clique em _OK_.
+
+![JenkinsJob](imagens/jenkins_criar.png)
+
+Com o Job criado, vamos as configurações.
+
+![Thinking](imagens/zak.gif)
+
+
+###### General
+Adicione a conexão que criamos no campo *GitLab Connection*.
+
+![GitLabConnection](imagens/conn_added.png)
+
+###### Gerenciamento de código fonte
+
+Selecione a opção Git, e adicione as informações do repositório criado no GitLab.
+
+![GitLabRepoConnection](imagens/git_repo_job.png)
+
+Para adicionar as credencias válidas para o repositório, clique em [Add]->[Jenkins] e adicione um usuário e senha válidos para conexão com o repositório.
+
+![GitLabRepoConnection](imagens/add_user.png)
+
+
+###### Trigger de builds
+
+Esse é o primeiro passo para nossa integração entre os dois serviços, estamos quase lá!
+
+![applause](imagens/applause.gif)
+
+
+Marque a opção *Build when a change is pushed to GitLab* e selecione quais ações executadas no GitLab vão acionar o Job no Jenkins. Copie a URL logo após a frase *GitLab CI Service URL*, pois vamos usa-la mais pra frente.
+
+![trigger](imagens/trigger.png)
+
+###### Build
+
+Adicione um passo no build, com a opção *Executar shell* e adicione o código ```python mail_test.py```.
+Com isso os testes que foram adicionados no repositórios irão ser executados pelo Jenkins.
+
+[trigger](imagens/acao_build.png)
+
+Clique em Salvar e o Job está finalizado!
+
+###### Ações de Pós Build
+
+Selecione a opção *Publish build status to GitLab commit*. Agora o Jenkins colocará o feedback de cada build nos commits/merges que acionaram o Job.
+
+[trigger](imagens/pos.png)
+
+
+### Webhook
+
+Como último passo, vamos adicionar o Webhook em nosso repositório no GitLab. Ele vai fornecer as informações para o Jenkins quando houver alguma alteração ou acão no repositório no qual ele foi configurado.
+
+Na página inicial do repositório, clique na engrenagem no canto superior direito e selecione *Webhooks*
+
+Cole a URL que o Jenkins forneceu no campo URL, e substitua localhost por Jenkins, selecione as ações que vão acionar o webhook e clique em *Add Webhook*
+
+![Hook](imagens/webhook.png)
+
+
+
+### O Grand Finale
+
+Após tantos passos e configurações, vamos ver nosso projeto rodando. Abra um merge request, ou faça um push para o repositório, e aguarde o Job ser iniciado, ao finalizar, ele adicionará no GitLab o feedback do build realizado com as alterações que foram feitas no código. Com isso seu projeto guanha muito mais agilidade e confiabilidade, com teste e feedbacks rápidos e automatizados.
+
+
+Muito obrigado a todos os que 
