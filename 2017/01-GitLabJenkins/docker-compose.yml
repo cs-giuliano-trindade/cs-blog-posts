@@ -26,7 +26,7 @@ services:
     gitlab:
         image: gitlab/gitlab-ce
         container_name: gitlab
-        hostname: gitlab.teste.com
+        hostname: gitlab
         restart: always
         network_mode: bridge
         links:

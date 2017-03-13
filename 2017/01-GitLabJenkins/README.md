@@ -51,7 +51,7 @@ services:
     gitlab:
         image: gitlab/gitlab-ce
         container_name: gitlab
-        hostname: gitlab.teste.com
+        hostname: gitlab
         restart: always
         network_mode: bridge
         links:
@@ -164,7 +164,7 @@ Agora estamos com o ambiente pronto e podemos começar a configuração da integ
 
 
 
-### Criação do repositório e do job
+### Criação do repositório
 
 Vamos criar um repositório no Gitlab para armazenar o nosso projeto.(São só dois arquivos, mas faz de conta que é um projeto :trollface:)
 
@@ -172,7 +172,83 @@ Na tela inicial, clique em _New Project_, preencha o nome para seu projeto e cli
 
 ![GitlabCriar](imagens/gitlab_criar.png)
 
+Após a criação do repositório, vamos adicionar os dois arquivos para execução de um teste unitário em Python.
 
-Após o login, clique em _Novo Job_, escolha _Projeto Freestyle_, digite um nome para o job e clique em _OK_.
+O primeiro faz validação muito simples de email, apenas para esse exemplo. Ele recebe um email e retorna se é verdadeiro ou falso seu houver um @.
+
+*mail.py*
+
+```py
+def is_valid(email):
+  return email and '@' in email
+```
+
+O segundo arquivo, vamos fazer para automatizar o teste e facilitar nossa vida.(é para isso que estamos aqui :sunglasses:)
+
+*mail_test.py*
+
+
+```py
+import unittest
+import mail
+class MailTest(unittest.TestCase):
+  def test_should_return_true_when_email_is_valid(self):
+      self.assertTrue(mail.is_valid('iam@gustavohenrique.net'))
+  def test_should_return_false_when_email_is_invalid(self):
+      self.assertFalse(mail.is_valid('xxxxx'))
+if __name__ == '__main__':
+  unittest.main()
+
+```
+[Fonte dos códigos em Python](http://www.concretesolutions.com.br/2016/11/23/devops-ferramentas-pos/)
+
+### Criação do Job
+Após o login no Jenkins, clique em _Novo Job_, escolha _Projeto Freestyle_, digite um nome para o job e clique em _OK_.
 
 ![GitlabCriar](imagens/jenkins_criar.png)
+
+Tudo bem simples, certo? Fica tranquilo que vamos continuar assim! <s>mentira :tired_face:</s>
+
+### Configurando o Jenkins
+
+Vamos precisar do [GitLab Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitLab+Plugin) para conectarmos no repositório do nosso projeto.(Lembre-se, são só dois arquivos, mas vamos manter a positividade).
+Para instala-lo, vá até [Gerenciar Jenkins]->[Gerenciar Plugins], clique na aba _Disponíveis_.
+
+Com o plugin instalado, vamos adicionar uma conexão com o GitLab, vamos seguir alguns passos simples e <s>talvez</s> vamos chegar lá! :astonished:
+
+##### Criando um access token
+
+Clique no círculo com sua imagem de perfil, no canto superior direito e vá em *Profile Settings* e clique na aba *Access Tokens*.
+Digite um nome fácil de identificar  para seu token e clique em *Create Personal Access Token*.
+
+![CriarToken](imagens/gerando_token.png)
+
+Após a criação, copie o hash exibido na tela, utilizaremos ele no próximo passo.
+
+![CriarToken](imagens/token_gerado.png)
+
+:warning: O token desaparece após atualizar a página, então guarde em lugar seguro.
+
+
+#### Adicionando a credencial no Jenkins
+
+Na tela inicial do Jenkins, vá até Credentials. Clique na seta do lado de global e selecione *Add Credentials*.
+
+![CriarToken](imagens/clic_add.png)
+
+Na janela a seguir, selecione *GitLab API Token* e coloque o hash gerado no GitLab no campo API token.
+
+![AddCred](imagens/add_cred.png)
+
+Após clicar em OK, você verá sua credencial criada.
+
+![OK](imagens/entrada_ok.png)
+
+Vamos ao próximo passo!
+
+
+#### Configurando a conexão Gitlab x Jenkins
+
+Com a nossa credencial criada vamos em [Gerenciar Jenkins]->[Configurar o sistema]. Desça até a Gitlab e preencha as informações conforme a imagem abaixo, ao terminar, clique em *Test Connection*. Se tudo estiver certo clique em *Salvar*.
+
+![GitLabConnection](imagens/gitlab_conn.png)
