@@ -300,7 +300,7 @@ Clique em Salvar e o Job está finalizado!
 
 Selecione a opção *Publish build status to GitLab commit*. Agora o Jenkins colocará o feedback de cada build nos commits/merges que acionaram o Job.
 
-[trigger](imagens/pos.png)
+![trigger](imagens/pos.png)
 
 
 ### Webhook
