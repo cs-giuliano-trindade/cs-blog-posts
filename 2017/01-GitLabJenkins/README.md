@@ -320,4 +320,10 @@ Cole a URL que o Jenkins forneceu no campo URL, e substitua localhost por Jenkin
 Após tantos passos e configurações, vamos ver nosso projeto rodando. Abra um merge request, ou faça um push para o repositório, e aguarde o Job ser iniciado, ao finalizar, ele adicionará no GitLab o feedback do build realizado com as alterações que foram feitas no código. Com isso seu projeto guanha muito mais agilidade e confiabilidade, com teste e feedbacks rápidos e automatizados.
 
 
-Muito obrigado a todos os que 
+![Merge](imagens/merge_ok.png)
+
+Muito obrigado por lerem esse artigo, e espero que eu tenha conseguido ajudar de alguma forma no entendimento sobre esse tema.
+Ficou alguma dúvida ou tem alguma sugestão? Utilize os comentários abaixo!
+
+
+Até a próxima!
