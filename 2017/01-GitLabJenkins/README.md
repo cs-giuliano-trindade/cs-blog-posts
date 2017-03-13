@@ -292,7 +292,7 @@ Marque a opção *Build when a change is pushed to GitLab* e selecione quais aç
 Adicione um passo no build, com a opção *Executar shell* e adicione o código ```python mail_test.py```.
 Com isso os testes que foram adicionados no repositórios irão ser executados pelo Jenkins.
 
-[trigger](imagens/acao_build.png)
+![trigger](imagens/acao_build.png)
 
 Clique em Salvar e o Job está finalizado!
 
