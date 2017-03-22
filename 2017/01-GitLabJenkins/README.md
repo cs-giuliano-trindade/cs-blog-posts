@@ -178,7 +178,7 @@ O primeiro faz validação muito simples de email, apenas para esse exemplo. Ele
 
 *mail.py*
 
-```py
+```
 def is_valid(email):
   return email and '@' in email
 ```
@@ -188,7 +188,7 @@ O segundo arquivo, vamos fazer para automatizar o teste e facilitar nossa vida.(
 *mail_test.py*
 
 
-```py
+```
 import unittest
 import mail
 class MailTest(unittest.TestCase):
