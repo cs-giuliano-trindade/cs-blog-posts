@@ -77,8 +77,8 @@ services:
   * **image:** Imagem docker que será utilizada para o serviço.
   * **container_name:** Atribui um nome ao container, tornando mais fácil a administração.
   * **hostname:** Adiciona um nome ao host. Vamos usar os hostnames nas próximas etapas.
-  * **network_mode:** Configurações de rede para o container. O modo bridge sobe todos os containers na mesma rede.
-  * **links:** Faz o link entre os containers, para que a comunicação por nome seja possível. (Falei que o hostname era importante :relieved:)
+  * **network_mode:** Configurações de rede para o container. O modo bridge sobe todos os containeres na mesma rede.
+  * **links:** Faz o link entre os containeres, para que a comunicação por nome seja possível. (Falei que o hostname era importante :relieved:)
   * **ports:** Você pode definir quais portas serão abertas interna e externamente no container. Todos os padrões para definição de portas podem ser encontrados [aqui](https://docs.docker.com/compose/compose-file/#/ports).
   * **volumes:** Monta *paths* ou volumes nomeados, especificando um caminho no host ou não. Todos os tipos de montagem de volume [aqui](https://docs.docker.com/compose/compose-file/#volumes-volumedriver).
 
@@ -98,13 +98,13 @@ Voltaremos com a programação normal em seguida, nesse mesmo canal e nesse mesm
 
 #### Docker Grand Ambassador
 
-Esse serviço permite a comunicação bidirecional entre containers. Isso significa que ele criará automaticamente um proxy em todas as portas expostas, e também detectará automaticamente as alterações feitas em um container ajustando o servidor proxy de acordo com a necessidade.(Por exemplo, um container é reiniciado e seu IP muda). Ou seja, ele vai nos poupar o trabalho de fazer um servidor DNS. :trollface:
+Esse serviço permite a comunicação bidirecional entre containeres. Isso significa que ele criará automaticamente um proxy em todas as portas expostas, e também detectará automaticamente as alterações feitas em um container ajustando o servidor proxy de acordo com a necessidade.(Por exemplo, um container é reiniciado e seu IP muda). Ou seja, ele vai nos poupar o trabalho de fazer um servidor DNS. :trollface:
 
 Você pode ler mais sobre o Docker Grand Ambassador [aqui](https://github.com/cpuguy83/docker-grand-ambassador).
 
 ### Jenkins
 
-O [Jenkins](https://jenkins.io/) permite a automatização dos processos no nosso projeto. Podemos automatizar testes, builds e etc., escolhendo quais serão as ações que vão acionar nosso *Job*.
+O [Jenkins](https://jenkins.io/) permite a automação dos processos no nosso projeto. Podemos automatizar testes, builds e etc., escolhendo quais serão as ações que vão acionar nosso *Job*.
 
 Vamos ver mais sobre essa integração ainda neste post.
 
@@ -135,7 +135,7 @@ Caso você não tenha as imagens docker dos serviços que estamos subindo, o doc
 
 ### Jenkins
 
-Após a inicialização dos serviços com o docker-compose, vamos fazer a configuração inicial do Jenkins. Acesse a url [http://localhost:8080/](http://localhost:8080/) e você será direcionado para a página inicial do Jenkins.
+Após a inicialização dos serviços com o docker-compose, vamos fazer a configuração inicial do Jenkins. Acesse a url [http://localhost:8080/](http://localhost:8080/) e você será direcionado para a página inicial da ferramenta.
 
 ![JenkinsIni](imagens/jenkins.png)
 
@@ -143,7 +143,7 @@ Para configurá-lo, vamos inserir a chave que ele gerou no momento da instalaç�
 
 ![JenkinsPass](imagens/jenkinspass.png)  
 
-Há outro modo que é acessando a pasta ```/var/jenkins_home/secrets/initialAdminPassword```, mas dá muito trabalho, melhor ficarmos com o primeiro mesmo. :sleeping:
+Há outro modo, que é acessando a pasta ```/var/jenkins_home/secrets/initialAdminPassword```, mas dá muito trabalho, melhor ficarmos com o primeiro mesmo. :sleeping:
 
 Após colocar a senha inicial, o Jenkins vai exibir a página de customização dos plugins iniciais. Selecione **Install sugested plugins** e aguarde o donwload e instalação.
 
@@ -154,7 +154,7 @@ Pronto, o Jenkins já está pronto para ser utilizado!
 
 ### GitLab
 
-Com o GitLab o processo é bem mais simples. Só acessar a página inicial dele [http://localhost:8050/](http://localhost:8050/), e colocar uma senha com no mínimo 8 caracteres.
+Com o GitLab o processo é bem mais simples. Só acessar a página inicial dele [http://localhost:8050/](http://localhost:8050/) e colocar uma senha com no mínimo 8 caracteres.
 
 ![GitlabSenha](imagens/gitlab_senha.png)
 
@@ -172,9 +172,9 @@ Na tela inicial, clique em _New Project_, preencha o nome para seu projeto e cli
 
 ![GitlabCriar](imagens/gitlab_criar.png)
 
-Após a criação do repositório, vamos adicionar os dois arquivos para execução de um teste unitário em Python.
+Agora vamos adicionar os dois arquivos para execução de um teste unitário em Python.
 
-O primeiro faz validação muito simples de email, apenas para esse exemplo. Ele recebe um email e retorna se é verdadeiro ou falso seu houver um @.
+O primeiro faz uma validação muito simples de email, apenas para esse exemplo. Ele recebe um e-mail e retorna se é verdadeiro ou falso se houver um @.
 
 *mail.py*
 
@@ -183,7 +183,7 @@ def is_valid(email):
   return email and '@' in email
 ```
 
-O segundo arquivo, vamos fazer para automatizar o teste e facilitar nossa vida.(é para isso que estamos aqui :sunglasses:)
+O segundo arquivo serve para automatizar o teste e facilitar nossa vida (é para isso que estamos aqui :sunglasses:)
 
 *mail_test.py*
 
@@ -204,19 +204,18 @@ if __name__ == '__main__':
 
 ### Configurando o Jenkins
 
-Vamos precisar do [GitLab Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitLab+Plugin) para conectarmos no repositório do nosso projeto.(Lembre-se, são só dois arquivos, mas vamos manter a positividade).
-Para instala-lo, vá até [Gerenciar Jenkins]->[Gerenciar Plugins], clique na aba _Disponíveis_.
+Vamos precisar do [GitLab Plugin](https://wiki.jenkins-ci.org/display/JENKINS/GitLab+Plugin) para nos conectarmos ao repositório do projeto.(Lembre-se, são só dois arquivos, mas vamos manter a positividade).
+Para instalar, vá até [Gerenciar Jenkins]->[Gerenciar Plugins] e clique na aba _Disponíveis_.
 
-Com o plugin instalado, vamos adicionar uma conexão com o GitLab, vamos seguir alguns passos simples e <s>talvez</s> vamos chegar lá! :astonished:
+Com o plugin instalado, vamos adicionar uma conexão com o GitLab, seguir alguns passos simples e <s>talvez</s> chegar lá! :astonished:
 
 ##### Criando um access token
 
-Clique no círculo com sua imagem de perfil, no canto superior direito e vá em *Profile Settings* e clique na aba *Access Tokens*.
-Digite um nome fácil de identificar  para seu token e clique em *Create Personal Access Token*.
+Clique no círculo com sua imagem de perfil, que fica no canto superior direito, e vá em *Profile Settings*. Clique na aba *Access Tokens*. Digite um nome fácil de identificar para seu token e clique em *Create Personal Access Token*.
 
 ![CriarToken](imagens/gerando_token.png)
 
-Após a criação, copie o hash exibido na tela, utilizaremos ele no próximo passo.
+Após a criação, copie o hash exibido na tela, vamos usá-lo no próximo passo.
 
 ![CriarToken](imagens/token_gerado.png)
 
@@ -237,16 +236,13 @@ Após clicar em OK, você verá sua credencial criada.
 
 ![OK](imagens/entrada_ok.png)
 
-Vamos ao próximo passo!
-
-
 #### Configurando a conexão Gitlab x Jenkins
 
-Com a nossa credencial criada vamos em [Gerenciar Jenkins]->[Configurar o sistema]. Desça até a Gitlab e preencha as informações conforme a imagem abaixo, ao terminar, clique em *Test Connection*. Se tudo estiver certo clique em *Salvar*.
+Com a nossa credencial criada vamos em [Gerenciar Jenkins]->[Configurar o sistema]. Desça até a Gitlab e preencha as informações conforme a imagem abaixo. Ao terminar, clique em *Test Connection*. Se tudo estiver certo, clique em *Salvar*.
 
 ![GitLabConnection](imagens/gitlab_conn.png)
 
-Depois de tantas configurações, vamos em frente.:goberserk:
+Depois de tantas configurações, vamos em frente!:goberserk:
 
 
 #### Criação do Job
@@ -255,7 +251,7 @@ No canto esquerdo, clique em _Novo Job_, escolha _Projeto Freestyle_, digite um 
 
 ![JenkinsJob](imagens/jenkins_criar.png)
 
-Com o Job criado, vamos as configurações.
+Com o Job criado, vamos às configurações.
 
 ![Thinking](imagens/zak.gif)
 
@@ -267,11 +263,11 @@ Adicione a conexão que criamos no campo *GitLab Connection*.
 
 ###### Gerenciamento de código fonte
 
-Selecione a opção Git, e adicione as informações do repositório criado no GitLab.
+Selecione a opção Git e adicione as informações do repositório criado no GitLab.
 
 ![GitLabRepoConnection](imagens/git_repo_job.png)
 
-Para adicionar as credencias válidas para o repositório, clique em [Add]->[Jenkins] e adicione um usuário e senha válidos para conexão com o repositório.
+Para adicionar as credencias válidas para o repositório, clique em [Add]->[Jenkins] e adicione um usuário e senha válidos para conexão.
 
 ![GitLabRepoConnection](imagens/add_user.png)
 
@@ -282,21 +278,20 @@ Esse é o primeiro passo para nossa integração entre os dois serviços, estamo
 
 ![applause](imagens/applause.gif)
 
-
-Marque a opção *Build when a change is pushed to GitLab* e selecione quais ações executadas no GitLab vão acionar o Job no Jenkins. Copie a URL logo após a frase *GitLab CI Service URL*, pois vamos usa-la mais pra frente.
+Marque a opção *Build when a change is pushed to GitLab* e selecione quais ações executadas no GitLab vão acionar o Job no Jenkins. Copie a URL logo após a frase *GitLab CI Service URL*, pois vamos usá-la mais pra frente.
 
 ![trigger](imagens/trigger.png)
 
 ###### Build
 
-Adicione um passo no build, com a opção *Executar shell* e adicione o código ```python mail_test.py```.
-Com isso os testes que foram adicionados no repositórios irão ser executados pelo Jenkins.
+Adicione um passo no build com a opção *Executar shell* e adicione o código ```python mail_test.py```.
+Com isso, os testes que foram adicionados ao repositório serão executados pelo Jenkins.
 
 ![trigger](imagens/acao_build.png)
 
 Clique em Salvar e o Job está finalizado!
 
-###### Ações de Pós Build
+###### Ações de Pós-build
 
 Selecione a opção *Publish build status to GitLab commit*. Agora o Jenkins colocará o feedback de cada build nos commits/merges que acionaram o Job.
 
@@ -305,25 +300,19 @@ Selecione a opção *Publish build status to GitLab commit*. Agora o Jenkins col
 
 ### Webhook
 
-Como último passo, vamos adicionar o Webhook em nosso repositório no GitLab. Ele vai fornecer as informações para o Jenkins quando houver alguma alteração ou acão no repositório no qual ele foi configurado.
+Como último passo, vamos adicionar o Webhook em nosso repositório no GitLab. Ele vai fornecer as informações para o Jenkins quando houver alguma alteração ou ação no repositório no qual ele foi configurado.
 
 Na página inicial do repositório, clique na engrenagem no canto superior direito e selecione *Webhooks*
 
-Cole a URL que o Jenkins forneceu no campo URL, e substitua localhost por Jenkins, selecione as ações que vão acionar o webhook e clique em *Add Webhook*
+Cole a URL que o Jenkins forneceu no campo URL e substitua localhost por Jenkins. Selecione as ações que vão acionar o webhook e clique em *Add Webhook*
 
 ![Hook](imagens/webhook.png)
 
-
-
 ### O Grand Finale
 
-Após tantos passos e configurações, vamos ver nosso projeto rodando. Abra um merge request, ou faça um push para o repositório, e aguarde o Job ser iniciado, ao finalizar, ele adicionará no GitLab o feedback do build realizado com as alterações que foram feitas no código. Com isso seu projeto guanha muito mais agilidade e confiabilidade, com teste e feedbacks rápidos e automatizados.
-
+Após tantos passos e configurações, vamos ver nosso projeto rodando. Abra um merge request ou faça um push para o repositório e aguarde o Job ser iniciado. Ao finalizar, ele vai adicionar ao GitLab o feedback do build realizado com as alterações que foram feitas no código. Com isso seu projeto ganha muito mais agilidade e confiabilidade, com testes e feedbacks rápidos e automatizados.
 
 ![Merge](imagens/merge_ok.png)
 
-Muito obrigado por lerem esse artigo, e espero que eu tenha conseguido ajudar de alguma forma no entendimento sobre esse tema.
-Ficou alguma dúvida ou tem alguma sugestão? Utilize os comentários abaixo!
-
-
+Espero ter ajudado de alguma forma! Ficou alguma dúvida ou tem alguma sugestão? Utilize os campos abaixo!
 Até a próxima!
